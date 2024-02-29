@@ -21,3 +21,19 @@ export const getUsersForSidebar = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+//this will get the user that is signed in..hopefully
+// export const getUser = async (req, res) => {
+//   try {
+//     const loggedInUserId = req.user._id;
+
+//     const filteredUsers = await User.find({
+//       loggedInUserId,
+//     }).select("-password");
+
+//     res.status(200).json(filteredUsers);
+//   } catch (error) {
+//     console.error("Error in getUser: ", error.message);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// };

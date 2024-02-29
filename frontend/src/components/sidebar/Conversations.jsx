@@ -1,16 +1,21 @@
+import useGetConversations from "../../hooks/useGetConversations";
 import Conversation from "./Conversation";
 
 const Conversations = () => {
+  const { loading, conversations } = useGetConversations();
   return (
-    <div className="flex h-[530px] flex-col overflow-auto py-2">
-      <Conversation />
-      <Conversation />
-      <Conversation />
-      <Conversation />
-      <Conversation />
-      <Conversation />
+    <div className="flex flex-col overflow-auto py-2">
+      {conversations.map((conversation, idx) => (
+        <Conversation
+          key={conversation._id}
+          conversation={conversation}
+          lastIdx={idx === conversations.length - 1}
+        />
+      ))}
 
-      <Conversation />
+      {loading ? (
+        <span className="loading loading-spinner mx-auto"></span>
+      ) : null}
     </div>
   );
 };
