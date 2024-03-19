@@ -14,9 +14,8 @@ import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
 
 //variables
-const PORT = process.env.PORT || 5000;
 
-const __dirname = path.resolve();
+const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
@@ -31,13 +30,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-});
-
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   //this will run the connectToMondoDb async function
   connectToMongoDb();
   console.log(`Server Running on port ${PORT}`);
